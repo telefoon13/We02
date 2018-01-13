@@ -21,7 +21,7 @@ namespace We02Oef1
             this.form1 = form1;
 
             comboBox1.DataSource = form1.klanten;
-            comboBox1.DisplayMember = "Mike";
+            //comboBox1.DisplayMember = "Mike";
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -31,13 +31,13 @@ namespace We02Oef1
                 Account newAccount;
                 if (radioButton1.Checked)
                 {
-                    newAccount = new RegularAccount(textBox1.Text, 0d, DateTime.Now, 0.2d, new Klant("Test", "Von Tester"), listBox1.Items.Cast<string>().ToList());
+                    newAccount = new RegularAccount(textBox1.Text, 0d, DateTime.Now, 0.2d, (Klant)comboBox1.SelectedItem, listBox1.Items.Cast<string>().ToList());
                     form1.accounts.Add(newAccount);
                     form1.account = newAccount;
                 }
                 else if (radioButton2.Checked)
                 {
-                    newAccount = new SavingsAccount(textBox1.Text, 0d, DateTime.Now, 0.5d, new Klant("Test", "Von Tester"), 1.5d);
+                    newAccount = new SavingsAccount(textBox1.Text, 0d, DateTime.Now, 0.5d, (Klant)comboBox1.SelectedItem, 1.5d);
                     form1.accounts.Add(newAccount);
                     form1.account = newAccount;
                 }

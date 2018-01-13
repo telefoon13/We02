@@ -19,15 +19,14 @@ namespace We02Oef1
         public Form1()
         {
             accounts = new List<Account>();
+            klanten = new List<Klant>();
             if (account == null)
             {
                 Account acdcount = new RegularAccount("TEST-ACCOUNT", 1000.50d, DateTime.Now, 0.2d, new Klant("Test", "Von Tester"), new List<string> { "TEST-CARD-0", "TEST-CARD-1" });
                 this.account = acdcount;
             }
 
-            InitializeComponent();
-            makeLabels();
-
+            
             Klant klant1 = new Klant("Mike", "Dhoore");
             klanten.Add(klant1);
             Klant klant2 = new Klant("Mikea", "Dhoore");
@@ -36,6 +35,9 @@ namespace We02Oef1
             klanten.Add(klant3);
             Klant klant4 = new Klant("Mikec", "Dhoore");
             klanten.Add(klant4);
+
+            InitializeComponent();
+            makeLabels();
         }
 
         public void makeLabels()
@@ -54,6 +56,15 @@ namespace We02Oef1
                 toolStripItem.Text = a.IBAN;
                 toolStripItem.Click += ToolStripItem_Click;
                 accountsToolStripMenuItem.DropDownItems.Add(toolStripItem);
+            }
+
+            customersToolStripMenuItem.DropDownItems.Clear();
+            foreach (Klant k in klanten)
+            {
+                ToolStripItem toolStripItem = new ToolStripMenuItem();
+                toolStripItem.Text = k.ToString();
+                toolStripItem.Click += ToolStripItem_Click;
+                customersToolStripMenuItem.DropDownItems.Add(toolStripItem);
             }
 
         }
